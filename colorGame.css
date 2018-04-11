@@ -1,0 +1,56 @@
+body {
+  background-color: rgb(32, 31, 32);
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+}
+.square {
+  width: 30%;
+  float: left;
+  padding-bottom: 30%;
+  margin: 1.66%;
+  background-color: red;
+  border-radius: 25px;
+}
+.container {
+  margin: 0 auto;
+  max-width: 600px;
+}
+#header {
+  background-color: rgb(73, 119, 170);
+  color: white;
+}
+#headerContent {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+#headerBottom {
+  background-color: white;
+  max-width: 100%;
+  color: rgb(73, 119, 170);
+  height: 25px;
+}
+#headerBottomContent {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 3px;
+}
+#newColors {
+  float: left;
+  padding: 0 3px;
+}
+#easy {
+  float: right;
+  padding: 0 3px;
+}
+#hard {
+  float: right;
+  padding: 0 3px;
+}
+#pickNotification {
+  padding-left: 25%;
+}
+.hover {
+  background-color: rgb(73, 119, 170);
+  color: white;
+}
