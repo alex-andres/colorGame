@@ -1,13 +1,12 @@
+let numColors = 6;
+let colors = colorGenerator(numColors);
 let body = document.body;
 let squares = document.querySelectorAll('.square');
 let pickNotification = document.getElementById('pickNotification');
 let header = document.querySelector('#header');
 let rgb = document.querySelector('#RGB');
-let numColors = 6;
-let colors = colorGenerator(numColors);
 let newColors = document.querySelector('#newColors');
-let easy = document.querySelector('#easy');
-let hard = document.querySelector('#hard');
+let modeButtons = document.querySelectorAll('.mode');
 let difficulty = document.querySelectorAll('.difficulty');
 
 function getRandomInt(min, max) {
@@ -59,11 +58,12 @@ function colorAssignment() {
         header.style.backgroundColor = clickedColor;
         //changing textContent of notification to read Correct
         pickNotification.textContent = 'Correct!';
+        newColors.textContent = 'Play Again?';
       } else {
         //hides incorrect square choice by making it the same color as body background color
         this.style.background = 'rgb(32, 31, 32)';
         //displays 'Try Again' in pickNotification Span
-        pickNotification.textContent = 'Try again';
+        pickNotification.textContent = 'Try Again';
       }
     });
   }
@@ -79,6 +79,16 @@ function reset() {
   colorGenerator();
   colorAssignment();
   header.style.backgroundColor = 'rgb(73, 119, 170)';
+  pickNotification.textContent = '';
+  newColors.textContent = 'New Colors';
+  for (let i = 0; i < squares.length; i++) {
+    if (colors[i]) {
+      squares[i].style.display = 'block';
+      squares[i].style.backgroundColor = colors[i];
+    } else {
+      squares[i].style.display = 'none';
+    }
+  }
 }
 
 //makes newColors a button
@@ -86,38 +96,12 @@ newColors.addEventListener('click', function() {
   reset();
 });
 
-easy.addEventListener('click', function() {
-  numColors = 3;
-  for (let i = 3; i < difficulty.length; i++) {
-    difficulty[i].classList.remove('square');
-  }
-  reset();
-});
-
-hard.addEventListener('click', function() {
-  numColors = 6;
-  for (let i = 3; i < difficulty.length; i++) {
-    difficulty[i].classList.add('square');
-  }
-  reset();
-});
-
-easy.addEventListener('mouseover', function() {
-  easy.classList.add('hover');
-});
-hard.addEventListener('mouseover', function() {
-  hard.classList.add('hover');
-});
-newColors.addEventListener('mouseover', function() {
-  newColors.classList.add('hover');
-});
-
-easy.addEventListener('mouseout', function() {
-  easy.classList.remove('hover');
-});
-hard.addEventListener('mouseout', function() {
-  hard.classList.remove('hover');
-});
-newColors.addEventListener('mouseout', function() {
-  newColors.classList.remove('hover');
-});
+for (var i = 0; i < modeButtons.length; i++) {
+  modeButtons[i].addEventListener('click', function() {
+    modeButtons[0].classList.remove('selected');
+    modeButtons[1].classList.remove('selected');
+    this.classList.add('selected');
+    this.textContent === 'Easy' ? (numColors = 3) : (numColors = 6);
+    reset();
+  });
+}
